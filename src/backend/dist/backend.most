@@ -1,0 +1,49 @@
+// Version: 1.0.0
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type OrderId__197865225 = Nat;
+type OrderStatus__272730104 = {#Delivered; #Pending; #Ready};
+type OrderType__209401566 = {#Custom; #Digital; #Print};
+type Order__141779993 =
+  {
+    createdAt : Timestamp__301639476;
+    customerName : Text;
+    dueDate : Text;
+    id : OrderId__197865225;
+    isPaid : Bool;
+    notes : Text;
+    orderType : OrderType__209401566;
+    phoneNumber : Text;
+    price : Float;
+    quantity : Nat;
+    status : OrderStatus__272730104
+  };
+type QuotationId__270312089 = Nat;
+type Quotation__1018575881 =
+  {
+    createdAt : Timestamp__301639476;
+    customerName : Text;
+    id : QuotationId__270312089;
+    orderType : OrderType__209401566;
+    phoneNumber : Text;
+    quantity : Nat;
+    totalPrice : Float;
+    unitPrice : Float
+  };
+type Timestamp__301639476 = Int;
+actor {
+  stable orders :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Order__141779993]];
+      var elementIndex : Nat__490723111
+    };
+  stable ordersState : {var nextOrderId : Nat};
+  stable quotations :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Quotation__1018575881]];
+      var elementIndex : Nat__490723111
+    };
+  stable quotationsState : {var nextQuotationId : Nat}
+};

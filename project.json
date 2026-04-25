@@ -1,0 +1,24 @@
+{
+  "overview": "PrintTrack is a professional mobile-first business dashboard for printing shop management. Track orders, manage quotations, view revenue reports, and access onboarding guides — all from a clean, card-based interface with dark and light mode support.",
+  "features": [
+    "Bottom navigation with Orders, Quotations, Reports, and Tutorial tabs",
+    "Orders dashboard with stats cards, searchable order list, and floating action button",
+    "Add/edit/delete orders with status badges (Pending, Ready, Delivered)",
+    "Quotations form with real-time auto price calculator and convert-to-order",
+    "Reports page showing daily/monthly revenue, completed orders, and pending payments",
+    "Tutorial page with onboarding guide, tips, and support section",
+    "Dark and light mode toggle",
+    "Mobile-first responsive design with smooth transitions"
+  ],
+  "category": "productivity",
+  "tags": [
+    "printing",
+    "business",
+    "orders",
+    "quotations",
+    "dashboard",
+    "mobile",
+    "dark-mode"
+  ],
+  "last_updated": "2026-04-25T12:38:41.017Z"
+}

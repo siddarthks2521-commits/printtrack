@@ -1,0 +1,106 @@
+type UpdateOrderArgs = 
+ record {
+   customerName: text;
+   dueDate: text;
+   id: OrderId;
+   isPaid: bool;
+   notes: text;
+   orderType: OrderType;
+   phoneNumber: text;
+   price: float64;
+   quantity: nat;
+   status: OrderStatus;
+ };
+type Timestamp = int;
+type QuotationId = nat;
+type Quotation = 
+ record {
+   createdAt: Timestamp;
+   customerName: text;
+   id: QuotationId;
+   orderType: OrderType;
+   phoneNumber: text;
+   quantity: nat;
+   totalPrice: float64;
+   unitPrice: float64;
+ };
+type PendingPaymentsInfo = 
+ record {
+   totalUnpaidAmount: float64;
+   totalUnpaidOrders: nat;
+ };
+type OrderType = 
+ variant {
+   Custom;
+   Digital;
+   Print;
+ };
+type OrderStatus = 
+ variant {
+   Delivered;
+   Pending;
+   Ready;
+ };
+type OrderId = nat;
+type Order = 
+ record {
+   createdAt: Timestamp;
+   customerName: text;
+   dueDate: text;
+   id: OrderId;
+   isPaid: bool;
+   notes: text;
+   orderType: OrderType;
+   phoneNumber: text;
+   price: float64;
+   quantity: nat;
+   status: OrderStatus;
+ };
+type MonthlyRevenueResult = 
+ record {
+   month: nat;
+   ordersCount: nat;
+   revenue: float64;
+   year: nat;
+ };
+type DailyRevenueResult = 
+ record {
+   date: text;
+   ordersCount: nat;
+   revenue: float64;
+ };
+type AddQuotationArgs = 
+ record {
+   customerName: text;
+   orderType: OrderType;
+   phoneNumber: text;
+   quantity: nat;
+   unitPrice: float64;
+ };
+type AddOrderArgs = 
+ record {
+   customerName: text;
+   dueDate: text;
+   notes: text;
+   orderType: OrderType;
+   phoneNumber: text;
+   price: float64;
+   quantity: nat;
+ };
+service : {
+  addOrder: (args: AddOrderArgs) -> (Order);
+  addQuotation: (args: AddQuotationArgs) -> (Quotation);
+  convertQuotationToOrder: (quotationId: QuotationId, dueDate: text, notes:
+   text) -> (opt Order);
+  deleteOrder: (id: OrderId) -> (bool);
+  deleteQuotation: (id: QuotationId) -> (bool);
+  getDailyRevenue: (date: text) -> (DailyRevenueResult) query;
+  getMonthlyRevenue: (year: nat, month: nat) -> (MonthlyRevenueResult) query;
+  getOrder: (id: OrderId) -> (opt Order) query;
+  getOrders: () -> (vec Order) query;
+  getOrdersCompletedCount: () -> (nat) query;
+  getPendingPaymentsInfo: () -> (PendingPaymentsInfo) query;
+  getQuotations: () -> (vec Quotation) query;
+  updateOrder: (args: UpdateOrderArgs) -> (bool);
+  updateOrderStatus: (id: OrderId, newStatus: OrderStatus) -> (bool);
+}
